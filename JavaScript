@@ -1,0 +1,151 @@
+var city,country,temp,wind,windKm,wIcon,wIconDisplay,wDescription;
+var appId = "01ffc2b8227e5302ffa7f8555ba7738e";
+var units = "metric" , unitDisplay = "℃" , counter = 1; var temp;
+var wUnit = " Km/h";
+var weatherApiUrl;
+var currentLat, currentLong;
+
+start();
+function start (){ //Get Geolocation with coordinates
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+    currentLat = position.coords.latitude;
+    currentLong = position.coords.longitude;
+    getCurrentWeatherParameters();
+    });
+  }
+}
+
+  function getCurrentWeatherParameters() {
+  weatherApiUrl = 'http://api.openweathermap.org/data/2.5/weather?lat=' + currentLat + '&lon=' +    currentLong  + "&units=" + units + "&APPID=" + appId;
+    
+    $.getJSON(weatherApiUrl, function(json) {
+    //console.log(json.weather[0].description);
+    city = json.name; // get City
+    country = json.sys.country; // get Country
+    temp = json.main.temp;  //get Temperature
+    wind = json.wind.speed; // get Wind Speed
+    wIcon = json.weather[0].icon; //get Weather ICON
+    wDescription = json.weather[0].description; //Weather description
+    wDescription = wDescription.charAt(0).toUpperCase() + wDescription.slice(1);  
+      
+//=========================The way of the noob ===============      
+    /*for (var key in json){
+      if (json.hasOwnProperty(key)) {
+        
+        if(key == "name"){                      // get City
+          city = json[key];
+        }
+      
+        if(key == "sys"){                     // get Country
+           for (var k in json[key]){
+             if (k == "country"){
+                country = json[key][k];
+             }
+           } 
+        }
+        
+         if(key == "main"){                  //get Temperature
+           for (var t in json[key]){
+             if (t == "temp"){
+                temp = json[key][t];
+             }
+           }
+        }
+        
+        
+          if(key == "wind"){                 // get Wind Speed
+           for (var w3 in json[key]){
+             if (w3 == "speed"){
+                wind = json[key][w3];
+             }
+           } 
+        }
+        
+        if(key == "weather"){               //get Weather ICON and Weather description
+          for (var w in json[key]){
+          //console.log(json[key][w]);
+            for (var w1 in json[key][w]){
+              if (w1 === "icon"){
+                wIcon=json[key][w][w1];
+              }
+              if (w1 === "description"){
+                wDescription =  json[key][w][w1]; 
+                wDescription = wDescription.charAt(0).toUpperCase() + wDescription.slice(1);
+              }
+              
+            }
+          }
+        }
+      */
+// ==================End of nonsense===========================      
+      
+      
+      // Update HTML with content  
+       
+      wIconDisplay = "http://openweathermap.org/img/w/" + wIcon + ".png";
+      document.getElementById("myIcon").src=wIconDisplay; 
+      temp = Math.round( temp * 10) / 10;
+      if (wUnit === " Km/h"){
+      windKm = wind * 3.6;     // converting Knots to Km/h
+      }else{
+      windKm = wind * 1.15;   // converting Knots to Mph
+      }
+      windKm = windKm.toFixed(2); //displaying only two decimals
+      $(".temperature").html(temp + " "+ unitDisplay);
+      $(".location").html(country+","+city);
+      $("#element1").html("Weather description: " + wDescription);
+      $("#element2").html("Wind speed: " + windKm  + wUnit);
+      modBackground(temp,units);
+      //}
+    //}  
+  });
+}    
+
+
+// Toggle Fahrenheit - Celsius
+function switchFunction () {
+counter++; 
+console.log(counter);
+if (counter % 2 === 0){ 
+    units = "imperial";
+    unitDisplay = "°F";
+    $("#switchB").html("Switch to Celsius");
+    wUnit = " Mph"
+    getCurrentWeatherParameters();
+  
+    }else{
+    units = "metric";
+    unitDisplay = "℃";
+    $("#switchB").html("Switch to Fahrenheit");
+    wUnit = " Km/h"
+    getCurrentWeatherParameters(); 
+    }
+}
+
+
+// Swtich background depending on temperature
+function modBackground(t){
+if (counter === 1){
+  if (t  < 0 ){
+    $('body').css("background", "url(http://www.eveboo.com/wp-content/uploads/2013/04/winter-hd-1080p-wallpapers-download.jpg");
+  }
+
+  if (t  >= 10  && t <= 20 ){
+    $('body').css("background", "url(http://www.hdhalloweenimages.com/wp-content/uploads/2015/11/November-Wallpaper-1.jpg");
+  }
+
+  if (t  > 20  && t <= 30 ){
+   // $("#myContainer").css("background","#2A8077");
+    $('body').css("background", "url(https://newevolutiondesigns.com/images/freebies/summer-wallpaper-25.jpg");
+  }
+
+  if (t  > 30 ){
+    //$("#myContainer").css("background","#2A8077");
+    $('body').css("background", "url(http://quotesideas.com/wp-content/uploads/2015/05/funny-summer-wallpaper1.jpeg");
+     }
+  }
+} // ℃ temperature is evaluated;
+
+
+
