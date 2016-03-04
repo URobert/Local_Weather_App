@@ -1,0 +1,119 @@
+body { 
+  background: url(http://hdwallpapersimage.com/wp-content/uploads/2014/06/hdwallpapersimage.com-city-lights-beyond-the-rainy-window-wide-hd-wallpaper-2560x1600.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.wrapper{
+  text-align:center;
+}
+
+.top-buffer { margin-top:20px; }
+.intro-buffer { margin-top: 20px;}
+
+h2{
+  font: 400 40px/0.8 'Great Vibes', Helvetica, sans-serif;
+  color: #fff;
+  text-shadow: 4px 4px 3px black; 
+  text-align: center;
+}
+
+/*.icontemp{
+  border: 2px solid white;
+  border-radius: 1em; 
+  font-size: 1em; 
+  display: inline-block;  
+  padding: 0em;
+  color: white;
+  background:transparent;
+}*/
+
+.icon {
+border-radius: 0.2em; 
+font-size: 3em; 
+display: inline-block;  
+padding: 0em;
+color: white;
+background:transparent;
+/*margin-left: 15%;*/
+  
+}
+
+.temperature {
+border-radius: 1em; 
+font: 400 40px/1.6 'Ledger', Garamond, Georgia, serif; 
+display: inline-block;  
+padding: 0.5em;
+color: white;
+background:transparent;
+text-align: center;
+}
+
+.weatherCondition {
+text-align: center;
+border-radius: 1em; 
+font-size: 1.5em; 
+display: inline-block;   
+padding: 0.5em;
+color: white;
+background:transparent;
+}
+
+.location {
+text-align: center;  
+witdh: 20%;
+border-radius: 0.2em; 
+font: 400 25px/1.6 'Ledger', Garamond, Georgia, serif;
+display: inline-block;    
+padding: 0.5em;
+color: white;
+background:transparent;
+}
+
+.container-fluid{
+  border: 2px solid gray;
+  background-color:rgba(0,0,0,0.8);
+  /*border-radius: 2em;
+  background: transparent;
+  width: 335px;
+  margin-left: 10px;*/
+}
+
+#element1 , #element2 {
+  font-style: italic;
+}
+
+p {
+  font: 400 15px/1.6 'Ledger', Garamond, Georgia, serif;
+}
+
+button {
+  color: black;
+  /*border-radius: 1.5em;*/
+}
+
+.btn-default{
+  background: #D3D3D3;
+}
+
+/*#r {
+  color: white;
+  margin-right:10px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font: 400 40px/1.5 'Pacifico', Helvetica, sans-serif;
+  font-size: 15px;
+  text-shadow: 3px 3px 0px black, 7px 7px 0px rgba(0,0,0,0.05);
+  z-index: -1;
+}*/
+
+#switchB{
+  background:white;
+  font: 400 30px/0.8 'Great Vibes', Helvetica, sans-serif;
+  padding:10px;
+}
+
+
